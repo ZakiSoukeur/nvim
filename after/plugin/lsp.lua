@@ -7,7 +7,6 @@ lsp.on_attach(function(client, bufnr)
 end)
 lsp.ensure_installed({
     'gopls',
-    'ast-grep'
 })
 
 -- (Optional) Configure lua language server for neovim
