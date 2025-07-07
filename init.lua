@@ -1,0 +1,2 @@
+require("zaki")
+print("salam")
