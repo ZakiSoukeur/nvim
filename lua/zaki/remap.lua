@@ -6,6 +6,10 @@ vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+-- Use <leader>y to copy to system clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
 
+-- Use <leader>p to paste from system clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>P', '"+P', { noremap = true, silent = true })

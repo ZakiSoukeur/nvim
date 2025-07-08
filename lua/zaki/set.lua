@@ -9,7 +9,10 @@ vim.opt.smartindent = true
 vim.opt.incsearch = true
 
 vim.colorcolumn = 80
-vim.opt.scrolloff= 8
-vim.termguicolor= true
+vim.opt.scrolloff = 8
+vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
+vim.g.mapleader = " " -- spacebar as leader
+
+vim.api.nvim_set_option("clipboard", "unnamed")
