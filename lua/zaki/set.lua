@@ -8,7 +8,6 @@ vim.opt.smartindent = true
 
 vim.opt.incsearch = true
 
-vim.colorcolumn = 80
 vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
 

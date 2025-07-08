@@ -8,12 +8,6 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use { "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            vim.cmd("colorscheme rose-pine")
-        end
-    }
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -45,9 +39,7 @@ return require('packer').startup(function(use)
         'catppuccin/nvim',
         as = 'catppuccin',
         config = function()
-            require("catppuccin").setup({
-                flavour = "mocha", -- or "latte", "frappe", etc.
-            })
+            require("catppuccin").setup()
             vim.cmd("colorscheme catppuccin")
         end
     }
