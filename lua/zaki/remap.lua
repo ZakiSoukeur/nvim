@@ -13,13 +13,8 @@ vim.keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
 -- Use <leader>p to paste from system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>P', '"+P', { noremap = true, silent = true })
+-- CTRL+T to split the current window vertically
+vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
 
--- CTRL+T to vsplit current buffer in a new tab
-vim.keymap.set('n', '<C-t>', function()
-    vim.cmd('vsplit')
-end, { noremap = true, silent = true })
-
--- x to close the current tab (only in normal mode)
--- WARNING: If you bind 'x' alone, it will override Vim's 'x' (delete char)
--- Better: use <leader>x or another key
-vim.keymap.set('n', '<leader>x', ':tabclose<CR>', { noremap = true, silent = true })
+-- Use <leader>x to close the current split window
+vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
