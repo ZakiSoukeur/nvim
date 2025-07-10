@@ -4,12 +4,12 @@ lsp.on_attach(function(client, bufnr)
     -- to learn the available actions
     lsp.default_keymaps({ buffer = bufnr })
     lsp.buffer_autoformat()
+    -- Format on save (fallback to null-ls if pylsp disables formatting)
 end)
 lsp.ensure_installed({
     'gopls',
 })
 
--- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()

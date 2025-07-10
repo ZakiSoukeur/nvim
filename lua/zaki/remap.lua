@@ -14,7 +14,9 @@ vim.keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>P', '"+P', { noremap = true, silent = true })
 -- CTRL+T to split the current window vertically
-vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
-
--- Use <leader>x to close the current split window
-vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
+    end
+})
