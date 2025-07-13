@@ -20,3 +20,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
     end
 })
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set('n', '<leader>ws', ':SessionSave<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>sl', ':SessionRestore<CR>', { noremap = true })
+
+vim.keymap.set('n', '<leader>fs', ':SessionSearch<CR>', { noremap = true })

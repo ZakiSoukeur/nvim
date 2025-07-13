@@ -50,4 +50,17 @@ return require('packer').startup(function(use)
         -- install jsregexp (optional!:).
         run = "make install_jsregexp"
     })
+    use {
+        'rmagatti/auto-session',
+        config = function()
+            require("auto-session").setup {
+                suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+            }
+        end
+    }
+    use { "itchyny/lightline.vim",
+        requires = { 'itchyny/vim-gitbranch' }
+
+    }
+    use('mrloop/telescope-git-branch.nvim')
 end)
