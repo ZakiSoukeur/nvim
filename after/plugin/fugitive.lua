@@ -4,7 +4,7 @@ vim.g.lightline = {
     active = {
         left = {
             { 'mode',     'paste' },
-            { 'readonly', 'filename', 'modified',  'gitbranch' },
+            { 'readonly', 'filename', 'modified', 'gitbranch' },
         },
         right = {
             { 'lineinfo' },
@@ -13,6 +13,18 @@ vim.g.lightline = {
         }
     },
     component_function = {
-        gitbranch = 'FugitiveHead'
+        gitbranch = 'FugitiveHead',
+        filename = 'v:lua.LightlineFilename'
     }
 }
+function _G.LightlineFilename()
+    local git_dir = vim.b.git_dir or ''
+    local root = vim.fn.fnamemodify(git_dir, ':h')
+    local path = vim.fn.expand('%:p')
+
+    if path:sub(1, #root) == root then
+        return path:sub(#root + 2) -- skip slash too
+    end
+
+    return vim.fn.expand('%')
+end
