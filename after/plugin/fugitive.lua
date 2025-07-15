@@ -31,29 +31,45 @@ function _G.LightlineFilename()
 end
 
 function _G.LightlineBlame()
-    -- Get current line number
     local line = vim.fn.line('.')
-
-    -- Run git blame for the current file + line
-    local blame = vim.fn.systemlist({
-        'git', 'blame', '--line-porcelain', '-L',
-        string.format('%d,%d', line, line), vim.fn.expand('%')
-    })
+    local file = vim.fn.expand('%')
+    local blame = vim.fn.systemlist({ 'git', 'blame', '--line-porcelain', '-L', line .. ',' .. line, file })
 
     if not blame or #blame == 0 then return '' end
 
-    local author, author_time = '', ''
-
+    local author, timestamp_str = '', ''
     for _, l in ipairs(blame) do
-        if l:match('^author ') then
+        if vim.startswith(l, 'author ') then
             author = l:sub(8)
-        elseif l:match('^author-time ') then
-            author_time = l:sub(13)
+        elseif vim.startswith(l, 'author-time ') then
+            timestamp_str = l:sub(13)
         end
     end
-    if author == 'Not Committed Yet' or author == '' then
+
+    if author == '' or author == 'Not Committed Yet' then
         return ''
     end
 
-    return author .. ' ' .. author_time
+    local function time_ago(ts)
+        local now = os.time()
+        local diff = now - ts
+        if diff < 60 then
+            return diff .. 's ago'
+        elseif diff < 3600 then
+            return math.floor(diff / 60) .. 'm ago'
+        elseif diff < 86400 then
+            return math.floor(diff / 3600) .. 'h ago'
+        elseif diff < 2629743 then -- ~1 month
+            return math.floor(diff / 86400) .. 'd ago'
+        elseif diff < 31556926 then -- ~1 year
+            return math.floor(diff / 2629743) .. 'mo ago'
+        else
+            return math.floor(diff / 31556926) .. 'y ago'
+        end
+    end
+
+    local ts = tonumber(timestamp_str)
+    local relative = ts and time_ago(ts) or timestamp_str
+
+    return string.format('%s, %s', author, relative)
 end
