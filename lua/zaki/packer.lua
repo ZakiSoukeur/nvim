@@ -63,4 +63,6 @@ return require('packer').startup(function(use)
 
     }
     use('mrloop/telescope-git-branch.nvim')
+    use('nvimtools/none-ls.nvim')
+    use('lewis6991/gitsigns.nvim')
 end)

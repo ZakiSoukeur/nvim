@@ -9,12 +9,13 @@ vim.g.lightline = {
         right = {
             { 'lineinfo' },
             { 'percent' },
-            { 'fileformat', 'fileencoding', 'filetype' },
+            { 'blame',   'fileformat', 'fileencoding', 'filetype' },
         }
     },
     component_function = {
         gitbranch = 'FugitiveHead',
-        filename = 'v:lua.LightlineFilename'
+        filename = 'v:lua.LightlineFilename',
+        blame = 'v:lua.LightlineBlame'
     }
 }
 function _G.LightlineFilename()
@@ -27,4 +28,32 @@ function _G.LightlineFilename()
     end
 
     return vim.fn.expand('%')
+end
+
+function _G.LightlineBlame()
+    -- Get current line number
+    local line = vim.fn.line('.')
+
+    -- Run git blame for the current file + line
+    local blame = vim.fn.systemlist({
+        'git', 'blame', '--line-porcelain', '-L',
+        string.format('%d,%d', line, line), vim.fn.expand('%')
+    })
+
+    if not blame or #blame == 0 then return '' end
+
+    local author, author_time = '', ''
+
+    for _, l in ipairs(blame) do
+        if l:match('^author ') then
+            author = l:sub(8)
+        elseif l:match('^author-time ') then
+            author_time = l:sub(13)
+        end
+    end
+    if author == 'Not Committed Yet' or author == '' then
+        return ''
+    end
+
+    return author .. ' ' .. author_time
 end
