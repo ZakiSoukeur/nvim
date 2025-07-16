@@ -16,3 +16,8 @@ vim.g.mapleader = " " -- spacebar as leader
 vim.opt.diffopt:append("vertical")
 vim.opt.swapfile = false
 vim.o.background = "dark"
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorHold" }, {
+    callback = function()
+        vim.cmd("redrawstatus")
+    end,
+})
