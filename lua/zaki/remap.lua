@@ -15,10 +15,10 @@ vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true, silent = true
 vim.keymap.set('n', '<leader>P', '"+P', { noremap = true, silent = true })
 -- CTRL+T to split the current window vertically
 vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-        vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
-        vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
-    end
+	callback = function()
+		vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
+		vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
+	end
 })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -26,3 +26,5 @@ vim.keymap.set('n', '<leader>ws', ':SessionSave<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>sl', ':SessionRestore<CR>', { noremap = true })
 
 vim.keymap.set('n', '<leader>fs', ':SessionSearch<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>gg', ':Flog<CR>', { noremap = true })
+-- vim.keymap.set('n', '<leader>gd', _G.DiffLineCommit, { desc = 'Diff line commit vs previous' })
