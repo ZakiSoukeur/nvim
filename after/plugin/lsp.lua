@@ -45,7 +45,7 @@ none_ls.setup({
         }),
     },
 })
-
+local luasnip = require('luasnip')
 cmp.setup({
 
     -- ... Your other configuration ...

@@ -71,4 +71,17 @@ return require('packer').startup(function(use)
     use('nvimtools/none-ls.nvim')
     use('lewis6991/gitsigns.nvim')
     use('rbong/vim-flog')
+    use({
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- Optional image support in preview window: See `# Preview Mode` for more information
+            -- { "3rd/image.nvim", config = function() require('image').setup({}) end },
+            -- OR use snacks.nvim's image module:
+            -- "folke/snacks.nvim",
+        }
+    })
 end)

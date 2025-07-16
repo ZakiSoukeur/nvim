@@ -21,3 +21,4 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorHold" }, {
         vim.cmd("redrawstatus")
     end,
 })
+vim.o.sessionoptions = "buffers,curdir,tabpages,winsize"
