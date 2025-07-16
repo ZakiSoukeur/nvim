@@ -35,14 +35,19 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },     -- Required
         }
     }
-    use {
-        'catppuccin/nvim',
-        as = 'catppuccin',
+    use({
+        "catppuccin/nvim",
+        as = "catppuccin",
         config = function()
-            require("catppuccin").setup()
-            vim.cmd("colorscheme catppuccin")
-        end
-    }
+            require("catppuccin").setup({
+                flavour = "mocha", -- or latte, frappe, macchiato
+                transparent_background = true,
+            })
+
+            vim.cmd.colorscheme("catppuccin")
+        end,
+    })
+
     use({
         "L3MON4D3/LuaSnip",
         -- follow latest release.

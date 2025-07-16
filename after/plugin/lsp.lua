@@ -20,6 +20,10 @@ lsp.setup()
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
+require("catppuccin").setup({
+    transparent_background = true,
+})
+
 cmp.setup({
 
     -- ... Your other configuration ...

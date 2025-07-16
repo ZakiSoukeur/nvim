@@ -14,3 +14,5 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.g.mapleader = " " -- spacebar as leader
 vim.opt.diffopt:append("vertical")
+vim.opt.swapfile = false
+vim.o.background = "dark"
