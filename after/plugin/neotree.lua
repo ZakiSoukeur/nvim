@@ -1,12 +1,18 @@
 vim.api.nvim_set_hl(0, "NeoTreeMatchHighlight", { fg = "#FFD700", bold = true })
 vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#44475a" }) -- change to your theme's highlight bg
 
-vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>")
+vim.keymap.set("n", "<leader>e", "<Cmd>Neotree reveal<CR>")
 require("neo-tree").setup({
     close_if_last_window = true,
     enable_git_status = true,
     enable_diagnostics = true,
     filesystem = {
+        filtered_items = {
+            visible = false, -- when true, they will just be displayed differently than normal items
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_hidden = false, --
+        },
         cwd_target = {
             sidebar = "tab", -- or "window" if using split layout
             current = "window",
