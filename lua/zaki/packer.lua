@@ -63,10 +63,10 @@ return require('packer').startup(function(use)
             }
         end
     }
-    use { "itchyny/lightline.vim",
-        requires = { 'itchyny/vim-gitbranch' }
-
-    }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { { 'itchyny/vim-gitbranch' },
+            { 'nvim-tree/nvim-web-devicons' }, opt = true } }
     use('mrloop/telescope-git-branch.nvim')
     use('nvimtools/none-ls.nvim')
     use('lewis6991/gitsigns.nvim')
