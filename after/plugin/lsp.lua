@@ -17,11 +17,33 @@ lsp.ensure_installed({
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
-local luasnip = require("luasnip")
+-- local luasnip = require("luasnip")
 local cmp = require("cmp")
 
 require("catppuccin").setup({
     transparent_background = true,
+})
+
+local none_ls = require("null-ls") -- still called "null-ls" in code
+require('lspconfig').pylsp.setup({
+    settings = {
+        pylsp = {
+            plugins = {
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
+                black = { enabled = false }, -- we’ll handle Black via null-ls
+            }
+        }
+    }
+})
+
+
+none_ls.setup({
+    sources = {
+        none_ls.builtins.formatting.black.with({
+            extra_args = { "--line-length", "120" },
+        }),
+    },
 })
 
 cmp.setup({
