@@ -40,11 +40,9 @@ return require('packer').startup(function(use)
         as = "catppuccin",
         config = function()
             require("catppuccin").setup({
-                flavour = "mocha", -- or latte, frappe, macchiato
-                transparent_background = true,
+                flavour = "frappe", -- or latte, frappe, macchiato
+                -- transparent_background = true,
             })
-
-            vim.cmd.colorscheme("catppuccin")
         end,
     })
 

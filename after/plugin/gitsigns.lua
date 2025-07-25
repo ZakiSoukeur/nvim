@@ -1,5 +1,5 @@
 vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", {
-    fg = "#888888", -- Set to a dim or bright color (not "none")
+    fg = "#999999", -- Set to a dim or bright color (not "none")
     bg = "none",    -- So it works with transparency
     italic = true,
 })
