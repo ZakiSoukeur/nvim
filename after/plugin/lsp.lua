@@ -14,11 +14,13 @@ lsp.ensure_installed({
     'gopls',
 })
 
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 -- local luasnip = require("luasnip")
-local cmp = require("cmp")
+lspconfig.ts_ls.setup({})
+lspconfig.tailwindcss.setup({})
 
 require("catppuccin").setup({
     transparent_background = true,
@@ -45,7 +47,19 @@ none_ls.setup({
         }),
     },
 })
-local luasnip = require('luasnip')
+local luasnip = require("luasnip")
+
+vim.keymap.set({ "i" }, "<C-K>", function() luasnip.expand() end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-L>", function() luasnip.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-J>", function() luasnip.jump(-1) end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<C-E>", function()
+    if luasnip.choice_active() then
+        luasnip.change_choice(1)
+    end
+end, { silent = true })
+require("luasnip.loaders.from_vscode").lazy_load()
+local cmp = require("cmp")
 cmp.setup({
 
     -- ... Your other configuration ...
@@ -86,9 +100,14 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-
         -- ... Your other mappings ...
     },
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' }, -- enable LuaSnip in cmp
+        { name = 'buffer' },
+        { name = 'path' },
+    }),
 
     -- ... Your other configuration ...
 })
