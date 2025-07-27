@@ -82,4 +82,6 @@ return require('packer').startup(function(use)
             -- "folke/snacks.nvim",
         }
     })
+    use('ap/vim-css-color')
+    use("catgoose/nvim-colorizer.lua")
 end)

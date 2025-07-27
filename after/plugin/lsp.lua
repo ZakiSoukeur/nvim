@@ -92,3 +92,4 @@ cmp.setup({
 
     -- ... Your other configuration ...
 })
+require("colorizer").setup()
