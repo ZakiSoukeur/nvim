@@ -21,7 +21,17 @@ lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 -- local luasnip = require("luasnip")
 lspconfig.ts_ls.setup({})
 lspconfig.tailwindcss.setup({})
-
+lspconfig.pyright.setup({
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "basic",       -- "off" or "strict"
+                diagnosticMode = "openFilesOnly", -- avoid checking entire workspace
+                autoImportCompletions = true
+            }
+        }
+    }
+})
 require("catppuccin").setup({
     transparent_background = true,
 })
@@ -112,3 +122,13 @@ cmp.setup({
     -- ... Your other configuration ...
 })
 require("colorizer").setup()
+require("lsp_signature").setup({
+    bind = true,
+    hint_enable = true,
+    floating_window = true,
+    hint_prefix = "🐍 ",
+})
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "pyright" }
+})
