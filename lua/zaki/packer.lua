@@ -92,4 +92,5 @@ return require('packer').startup(function(use)
     use("catgoose/nvim-colorizer.lua")
     use { 'dsznajder/vscode-es7-javascript-react-snippets', run = 'yarn install --frozen-lockfile && yarn compile' }
     use "mg979/vim-visual-multi"
+    use "tpope/vim-surround"
 end)
