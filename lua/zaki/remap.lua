@@ -5,7 +5,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+vim.keymap.set('n', '<leader>f', function()
+    vim.lsp.buf.format({ async = true })
+end, opts)
 -- Use <leader>y to copy to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
@@ -15,15 +19,16 @@ vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true, silent = true
 vim.keymap.set('n', '<leader>P', '"+P', { noremap = true, silent = true })
 -- CTRL+T to split the current window vertically
 vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
-		vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
-	end
+    callback = function()
+        vim.keymap.set('n', '<C-t>', ':vsplit<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<C-x>', ':close<CR>', { noremap = true, silent = true })
+    end
 })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set('n', '<leader>ws', ':SessionSave<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>sl', ':SessionRestore<CR>', { noremap = true })
+
 
 vim.keymap.set('n', '<leader>fs', ':SessionSearch<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>gg', ':Flog<CR>', { noremap = true })

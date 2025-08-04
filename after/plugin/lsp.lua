@@ -130,5 +130,5 @@ require("lsp_signature").setup({
 })
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "pyright" }
+    ensure_installed = { "ruff" }
 })
